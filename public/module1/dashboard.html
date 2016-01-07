@@ -1,0 +1,197 @@
+<style>
+    .active-appointments, .settled-appointments, .pending-appointments, .no-active-appointments {
+        background: #2d2c2c;
+    }
+    .margin{
+        margin-top:10px !important
+    }
+</style>
+<div class="active-appointments" ng-show="true">
+   <!--  <input type="text" id="searchQuery" class="form-control" style="margin-top:10px;border:1px solid #888888" placeholder="You can enter either Name / Mobile / Phone / Email / Address to search" ng-model="search"> -->
+   <form name="gitsearchform" novalidate>
+   <div class="row">
+       <div class="col-md-4 margin"  >
+           <input ng-model = "inputObj.user" type="text" name="user" id="input" placeholder="UserName" class="form-control" ng-required="true" pattern="" title=""/>
+       </div>
+        <div class="col-md-4 margin"  >
+            <input ng-model ="inputObj.repo" type="text" name="repo" id="input" class="form-control" value="" ng-required="true" pattern="" title="">
+        </div>
+        <div >
+             <button class="btn btn-xs btn-primary form-box margin" ng-disabled="gitsearchform.$invalid" ng-click="getGitIssues()">Search</button>
+        </div>
+   </div>
+   </form>
+   
+   <div>
+    <!--"-->
+    <hr>
+    <ul id="myTab" class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="/#users" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-user"></i>
+                Active Tab
+            </a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="users"  ng-if="gitFectch">
+        <h2></h2>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover">
+                       <h4 class="col-md-offset-5"> Issues until 1st day</h4>
+                            <thead>
+                                <tr>
+
+                                    <th>Index</th>
+                                    <th>Title</th>
+                                    <th>Opended At</th>
+                                    <th>Updated At</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="todo in todoFiltered| startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit ">
+                                  <td>{{((currentPage-1)*entryLimit)+$index+1}}</td>
+                                   <td>{{ todo.title }}</td>
+                                    <td>{{ todo.created_at }}</td>
+                                    <td>{{todo.updated_at}}</td>
+                                    <td>{{todo.state}}</td>                                 
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <pagination data-boundary-links="true"
+                                    data-num-pages="noOfPages"
+                                    data-current-page="currentPage"
+                                    max-size="maxSize"
+                                    class="pagination-small pagination-centered"
+                                    data-previous-text="&laquo;"
+                                    data-next-text="&raquo;">
+                        </pagination>
+                    </div>
+                </div>
+            </div>
+
+            <!-- upto 7 daya -->
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover">
+                         <h4 class="col-md-offset-5"> Issues until 7th day</h4>
+                            <thead>
+                                <tr>
+
+                                    <th>Index</th>
+                                    <th>Title</th>
+                                    <th>Opended At</th>
+                                    <th>Updated At</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="todo in uptoSevenCollectionFiltered| startFrom:(currentPageSeven-1)*entryLimitSeven | limitTo:entryLimitSeven ">
+                                  <td>{{((currentPageSeven-1)*entryLimitSeven)+$index+1}}</td>
+                                   <td>{{ todo.title }}</td>
+                                    <td>{{ todo.created_at }}</td>
+                                    <td>{{todo.updated_at}}</td>
+                                    <td>{{todo.state}}</td>                                 
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <pagination data-boundary-links="true"
+                                    data-num-pages="noOfPagesSeven"
+                                    data-current-page="currentPageSeven"
+                                    max-size="maxSize"
+                                    class="pagination-small pagination-centered"
+                                    data-previous-text="&laquo;"
+                                    data-next-text="&raquo;">
+                        </pagination>
+                    </div>
+                </div>
+            </div>
+
+            <!-- greater than 7 days -->
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover">
+                        <h4 class="col-md-offset-5"> Issues after 7th day</h4>
+                            <thead>
+                                <tr>
+
+                                    <th>Index</th>
+                                    <th>Title</th>
+                                    <th>Opended At</th>
+                                    <th>Updated At</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="todo in gretaerCollectionFiltered| startFrom:(currentPageGt-1)*entryLimitGt | limitTo:entryLimitGt ">
+                                  <td>{{((currentPageGt-1)*entryLimitGt)+$index+1}}</td>
+                                   <td>{{ todo.title }}</td>
+                                    <td>{{ todo.created_at }}</td>
+                                    <td>{{todo.updated_at}}</td>
+                                    <td>{{todo.state}}</td>                                 
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <pagination data-boundary-links="true"
+                                    data-num-pages="noOfPagesGt"
+                                    data-current-page="currentPageGt"
+                                    max-size="maxSize"
+                                    class="pagination-small pagination-centered"
+                                    data-previous-text="&laquo;"
+                                    data-next-text="&raquo;">
+                        </pagination>
+                    </div>
+                </div>
+            </div>
+
+         
+        </div>
+
+           <!-- Custom message -->
+            <div class="panel panel-default" ng-show="!gitFectch">
+                <div class="panel-body">
+                <div class="form-group" style="margin-top:50px;margin-bottom:50px">
+                   <div class="bg-danger"><b>Please provide correct username or repository</b></div> 
+                </div>
+                
+            </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Error</h4>
+            </div>
+            <div class="modal-body">
+              <p class="bg-danger">
+                  Please provide correct username or repository
+              </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearCustomerData()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#modifiedDate').datetimepicker({
+            "format": 'Y/m/d H:i',
+            "step": 30,
+            "minTime": "08:00",
+            "maxTime": "10:00"
+        });
+    })
+</script>

@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html ng-app="sampleApp">
+<head>
+	<meta charset="UTF-8">
+	<base href="/">
+
+	<title>Shippable Screening Application</title>
+
+	<!-- CSS -->
+	<link href="resources/css/default.css" rel="stylesheet">
+	<link href="resources/css/main.css" rel="stylesheet">
+	<link href="resources/css/styles.css" rel="stylesheet">
+
+	<link href="resources/css/angular-block-ui.css" rel="stylesheet" />
+	<link href="resources/css/bootstrap.no-icons.min.css" rel="stylesheet" />
+	<link href="resources/css/font-awesome.css" rel="stylesheet" />
+	<link href="resources/css/jquery.datetimepicker.css" rel="stylesheet" />
+	<link href="resources/css/typeaheadjs.css" rel="stylesheet" />
+	<link href="resources/css/jquery.fileupload-ui.css" rel="stylesheet">
+	<link href="resources/css/jquery-ui.css" id="theme" rel="stylesheet">
+	<link href="resources/css/maya_styles.css" id="theme" rel="stylesheet">
+
+	<!-- JS -->
+
+	<!-- Required 3rd party JS resources -->
+	<script src="resources/js/vendor/jquery-1.11.2.min.js"></script>
+	<script src="resources/js/vendor/angular.min.js"></script>
+	<script src="resources/js/vendor/angular-route.min.js"></script>
+	<script src="resources/js/vendor/angular-ui-router.js"></script>
+	<script src="resources/js/vendor/angular-cookies.js"></script>
+	<script src="resources/js/vendor/ng-table.js"></script>
+	<script src="resources/js/vendor/angulartics.js"></script>
+	<script src="resources/js/vendor/angulartics-ga.js"></script>
+
+	<script src="resources/js/vendor/bootstrap.min.js"></script>
+	<script src="resources/js/vendor/angular-block-ui.js"></script>
+	<script src="resources/js/vendor/date.js"></script>
+	<script src="resources/js/vendor/jquery.fancybox.js"></script>
+	<script src="resources/js/vendor/jquery.md5.js"></script>
+	<script src="resources/js/vendor/jquery.tmpl.min.js"></script>
+	<script src="resources/js/vendor/jquery.iframe-transport.js"></script>
+	<script src="resources/js/vendor/jquery.form.min.js"></script>
+	<script src="resources/js/vendor/ui-bootstrap-tpls-0.2.0.js"></script>
+	<script src="resources/js/vendor/jquery.datetimepicker.js"></script>
+	<script src="resources/js/vendor/typeahead.bundle.js"></script>
+
+
+	<!-- ANGULAR CUSTOM -->
+	<script src="module2/MainCtrl.js"></script>
+    <script src="module1/DashboardCtrl.js"></script>
+	
+	<script src="js/appRoutes.js"></script>
+	<script src="js/app.js"></script>
+<!-- service -->
+	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <nav class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <a class="navbar-brand active" href="/dashboard">DashBoard</a>
+               
+            </div>
+            <ul class="nav navbar-nav ">
+                <li><a href="/aboutme">About</a></li>
+            </ul>
+        </nav>
+        <!-- ANGULAR DYNAMIC CONTENT -->
+        <div ng-view></div>
+    </div>
+</body>
+</html>
